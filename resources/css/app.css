@@ -1,0 +1,40 @@
+@import "swiper/css";
+@import "tailwindcss";
+@import "./theme.css";
+@import "./utilities.css";
+@import "./custom.css" layer(utilities);
+
+@source '../../vendor/tailpress/framework/**/*.php';
+@source '../../vendor/tailpress/framework/**/**/*.php';
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-zinc-200, currentColor);
+  }
+}
+
+.showcase-pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #d4d4d8;
+  opacity: 1;
+}
+.showcase-pagination .swiper-pagination-bullet-active {
+  background: #0d9488;
+  width: 20px;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
