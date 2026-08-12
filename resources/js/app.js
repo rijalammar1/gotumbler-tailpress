@@ -11,11 +11,18 @@ import {
 window.addEventListener("load", function () {
   let mainNavigation = document.getElementById("primary-navigation");
   let mainNavigationToggle = document.getElementById("primary-menu-toggle");
+  let iconOpen = document.getElementById("menu-icon-open");
+  let iconClose = document.getElementById("menu-icon-close");
 
   if (mainNavigation && mainNavigationToggle) {
     mainNavigationToggle.addEventListener("click", function (e) {
       e.preventDefault();
       mainNavigation.classList.toggle("hidden");
+      mainNavigation.classList.toggle("flex");
+      if (iconOpen && iconClose) {
+        iconOpen.classList.toggle("hidden");
+        iconClose.classList.toggle("hidden");
+      }
     });
   }
 

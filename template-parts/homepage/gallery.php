@@ -6,15 +6,15 @@
         <div class="swiper-wrapper">
           <?php
           $showcase_slides = [
-            'Banner-GT-1-1.webp',
-            'Banner-GT-2-1.webp',
-            'Banner-GT-3.webp',
+            'http://belajar-tailpress.test/wp-content/uploads/2026/08/Banner-GT-1-1.webp',
+            'http://belajar-tailpress.test/wp-content/uploads/2026/08/Banner-GT-2-1.webp',
+            'http://belajar-tailpress.test/wp-content/uploads/2026/08/Banner-GT-3.webp',
           ];
           foreach ($showcase_slides as $slide):
           ?>
             <div class="swiper-slide">
               <img
-                src="<?php echo esc_url(get_template_directory_uri() . '/resources/images/showcase/' . $slide); ?>"
+                src="<?php echo esc_url($slide); ?>"
                 alt="Showcase Gotumbler"
                 class="w-full h-[420px] md:h-[520px] object-cover">
             </div>

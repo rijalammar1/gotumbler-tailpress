@@ -23,7 +23,7 @@
       <div class="lg:col-span-4">
         <a href="<?php echo esc_url(home_url('/')); ?>" class="!no-underline flex items-center gap-2 mb-6">
           <img
-            src="<?php echo esc_url(get_template_directory_uri() . '/resources/images/cropped-Gotumbler_Logo_3_10.webp'); ?>"
+            src="http://belajar-tailpress.test/wp-content/uploads/2026/08/cropped-Gotumbler_Logo_3_10.webp"
             alt="<?php bloginfo('name'); ?>"
             class="h-8 w-auto">
         </a>

@@ -40,17 +40,17 @@
             <?php
             $printing_slides = [
               [
-                'image'   => 'UV-2.webp',
+                'image'   => 'http://belajar-tailpress.test/wp-content/uploads/2026/08/UV-2.webp',
                 'badge'   => 'Cetak UV',
                 'caption' => 'Hasil Cetak UV - Desain Kreatif',
               ],
               [
-                'image'   => 'Laser-1.webp',
+                'image'   => 'http://belajar-tailpress.test/wp-content/uploads/2026/08/Laser-1.webp',
                 'badge'   => 'Grafir Laser',
                 'caption' => 'Hasil Grafir - Presisi & Elegan',
               ],
               [
-                'image'   => 'UV-1.webp',
+                'image'   => 'http://belajar-tailpress.test/wp-content/uploads/2026/08/UV-1.webp',
                 'badge'   => 'Full Color',
                 'caption' => 'Hasil Cetak UV - Warna Tajam & Full Color',
               ],
@@ -59,7 +59,7 @@
             ?>
               <div class="swiper-slide relative">
                 <img
-                  src="<?php echo esc_url(get_template_directory_uri() . '/resources/images/printing/' . $slide['image']); ?>"
+                  src="<?php echo esc_url($slide['image']); ?>"
                   alt="<?php echo esc_attr($slide['caption']); ?>"
                   class="w-full h-[420px] object-cover">
 

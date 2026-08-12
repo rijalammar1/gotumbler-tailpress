@@ -63,18 +63,20 @@
         <!-- Product Main Image Frame -->
         <div class="swiper hero-swiper relative w-64 sm:w-72 lg:w-full max-w-xs aspect-[4/5] overflow-hidden rounded-2xl shadow-sm transition-transform duration-500 group-hover:scale-105">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img
-                src="<?php echo esc_url(get_template_directory_uri() . '/resources/images/Hero-GT-1.webp'); ?>"
-                alt="Tumbler premium"
-                class="absolute inset-0 w-full h-full object-cover">
-            </div>
-            <div class="swiper-slide">
-              <img
-                src="<?php echo esc_url(get_template_directory_uri() . '/resources/images/Hero-GT-2.webp'); ?>"
-                alt="Tumbler premium"
-                class="absolute inset-0 w-full h-full object-cover">
-            </div>
+            <?php
+            $hero_slides = [
+              'http://belajar-tailpress.test/wp-content/uploads/2026/08/Hero-GT-1.webp',
+              'http://belajar-tailpress.test/wp-content/uploads/2026/08/Hero-GT-2.webp',
+            ];
+            foreach ($hero_slides as $slide):
+            ?>
+              <div class="swiper-slide">
+                <img
+                  src="<?php echo esc_url($slide); ?>"
+                  alt="Tumbler premium"
+                  class="absolute inset-0 w-full h-full object-cover">
+              </div>
+            <?php endforeach; ?>
           </div>
         </div>
       </div>

@@ -31,21 +31,21 @@
           <div class="swiper-wrapper">
             <?php
             $portfolio_items = [
-              'Cust-GT-1.webp',
-              'Cust-GT-2.webp',
-              'Cust-GT-3.webp',
-              'Cust-GT-4.webp',
-              'Cust-GT-5.webp',
-              'Cust-GT-6.webp',
-              'Cust-GT-7.webp',
-              'Cust-GT-8.webp',
+              'http://belajar-tailpress.test/wp-content/uploads/2026/08/Cust-GT-1.webp',
+              'http://belajar-tailpress.test/wp-content/uploads/2026/08/Cust-GT-2.webp',
+              'http://belajar-tailpress.test/wp-content/uploads/2026/08/Cust-GT-3.webp',
+              'http://belajar-tailpress.test/wp-content/uploads/2026/08/Cust-GT-4.webp',
+              'http://belajar-tailpress.test/wp-content/uploads/2026/08/Cust-GT-5.webp',
+              'http://belajar-tailpress.test/wp-content/uploads/2026/08/Cust-GT-6.webp',
+              'http://belajar-tailpress.test/wp-content/uploads/2026/08/Cust-GT-7.webp',
+              'http://belajar-tailpress.test/wp-content/uploads/2026/08/Cust-GT-8.webp',
             ];
             foreach ($portfolio_items as $item):
             ?>
               <div class="swiper-slide !w-[320px]">
                 <div class="rounded-2xl border border-zinc-100 overflow-hidden bg-white shadow-sm">
                   <img
-                    src="<?php echo esc_url(get_template_directory_uri() . '/resources/images/portfolio/' . $item); ?>"
+                    src="<?php echo esc_url($item); ?>"
                     alt="Portfolio Gotumbler"
                     class="w-full h-72 object-cover">
                 </div>
