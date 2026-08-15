@@ -74,3 +74,6 @@ function gotumbler_product_search_template($template)
   return $template;
 }
 add_filter('template_include', 'gotumbler_product_search_template', 99);
+add_filter('woocommerce_default_catalog_orderby', function () {
+  return 'date';
+});
