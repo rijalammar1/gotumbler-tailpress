@@ -44,7 +44,7 @@ get_header('shop');
 
     <!-- Results count + sorting -->
     <div class="flex flex-wrap justify-between items-center gap-3 mb-5 pb-4 border-b border-zinc-100">
-      <p class="text-xs text-zinc-500">
+      <p class="text-sm font-semibold text-zinc-500">
         <?php
         global $wp_query;
         $total = $wp_query->found_posts;
