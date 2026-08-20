@@ -44,7 +44,7 @@ get_header('shop');
 
     <!-- Results count + sorting -->
     <div class="flex flex-wrap justify-between items-center gap-3 mb-5 pb-4 border-b border-zinc-100">
-      <p class="text-sm font-semibold text-zinc-500">
+      <p class="text-sm font-semibold text-zinc-500 leading-none">
         <?php
         global $wp_query;
         $total = $wp_query->found_posts;
@@ -53,7 +53,7 @@ get_header('shop');
       </p>
 
       <div class="flex items-center gap-3">
-        <span class="text-xs font-semibold uppercase tracking-wide text-zinc-400">Urutkan:</span>
+        <span class="text-xs font-semibold uppercase tracking-wide text-zinc-400 leading-none">Urutkan:</span>
         <?php woocommerce_catalog_ordering(); ?>
       </div>
     </div>

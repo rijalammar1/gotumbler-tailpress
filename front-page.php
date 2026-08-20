@@ -43,6 +43,10 @@ get_template_part('template-parts/homepage/jasa-cetak');
 ?>
 
 <?php
+get_template_part('template-parts/homepage/reviews');
+?>
+
+<?php
 get_template_part('template-parts/homepage/faq');
 ?>
 

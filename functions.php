@@ -27,6 +27,7 @@ function tailpress(): TailPress\Framework\Theme
       'align-wide',
       'wp-block-styles',
       'responsive-embeds',
+      'woocommerce',
       'html5' => [
         'search-form',
         'comment-form',
@@ -38,6 +39,19 @@ function tailpress(): TailPress\Framework\Theme
 }
 
 tailpress();
+
+/**
+ * WooCommerce theme support.
+ * Wajib biar WooCommerce mempercayai tema untuk override template & style-nya.
+ */
+// function gotumbler_add_woocommerce_support()
+// {
+//   add_theme_support('woocommerce');
+//   add_theme_support('wc-product-gallery-zoom');
+//   add_theme_support('wc-product-gallery-lightbox');
+//   add_theme_support('wc-product-gallery-slider');
+// }
+// add_action('after_setup_theme', 'gotumbler_add_woocommerce_support');
 
 function tailpress_custom_fonts()
 {
