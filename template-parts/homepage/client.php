@@ -1,4 +1,4 @@
-<section class="py-12 bg-white border-y border-zinc-100">
+<section class="py-12 bg-white  border-zinc-100">
   <div class="container mx-auto">
     <p class="text-center text-xs font-semibold uppercase tracking-widest text-zinc-400 mb-8">
       Dipercaya untuk Custom Merchandise oleh BUMN, Instansi Pemerintah, Universitas &amp; Swasta

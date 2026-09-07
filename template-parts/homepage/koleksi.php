@@ -65,12 +65,12 @@
                   </svg>
                   Detail
                 </a>
-                <a href="https://wa.me/62xxxxxxxxxx" class="flex-1 border border-zinc-300 hover:border-teal-500 hover:bg-teal-50 text-sm font-semibold px-4 py-2.5 rounded-full inline-flex items-center justify-center gap-1.5 transition-colors text-zinc-900 hover:text-teal-700">
+                <button type="button" onclick="openWaPopup('Koleksi Produk - <?php echo esc_js(get_the_title()); ?>')" class="flex-1 border border-zinc-300 hover:border-teal-500 hover:bg-teal-50 text-sm font-semibold px-4 py-2.5 rounded-full inline-flex items-center justify-center gap-1.5 transition-colors text-zinc-900 hover:text-teal-700 cursor-pointer">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.66 13.44L3 20.9l3.55-1.33a8.94 8.94 0 0 0 5.5 1.88h.01A8.94 8.94 0 0 0 21 12.5a8.86 8.86 0 0 0-2.4-6.18Zm-5.55 13.7h-.01a7.43 7.43 0 0 1-4.14-1.24l-.3-.19-2.35.87.78-2.29-.19-.3a7.42 7.42 0 0 1-1.15-4A7.43 7.43 0 0 1 12.06 5.5a7.39 7.39 0 0 1 5.25 2.17 7.36 7.36 0 0 1 2.17 5.28 7.43 7.43 0 0 1-7.43 7.07Zm4.07-5.56c-.22-.11-1.3-.64-1.5-.72-.2-.07-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.16-.48.06-1.28-.64-2.12-1.14-2.97-2.58-.22-.38.22-.35.63-1.17.07-.15.03-.28-.03-.39-.06-.11-.5-1.21-.68-1.66-.18-.44-.36-.38-.5-.39-.13-.01-.28-.01-.43-.01a.83.83 0 0 0-.6.28c-.2.22-.79.77-.79 1.87 0 1.1.8 2.17.91 2.32.11.15 1.56 2.38 3.78 3.24 1.86.73 2.24.59 2.65.55.41-.04 1.31-.53 1.5-1.05.18-.51.18-.95.13-1.05-.05-.1-.2-.16-.42-.28Z" />
                   </svg>
                   Pesan
-                </a>
+                </button>
               </div>
             </div>
           </div>
