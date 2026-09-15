@@ -124,3 +124,23 @@ add_filter('gettext', function ($translated, $original, $domain) {
 
   return $translated;
 }, 10, 3);
+
+// Tambah field "Video URL" di tab General product data ini pakai extension
+add_action('woocommerce_product_options_general_product_data', function () {
+  woocommerce_wp_text_input([
+    'id'          => '_gotumbler_video_url',
+    'label'       => 'Video Produk (URL file .mp4)',
+    'placeholder' => 'https://.../video.mp4',
+    'desc_tip'    => true,
+    'description' => 'Upload video ke Media Library dulu, lalu paste URL file .mp4-nya di sini.',
+  ]);
+});
+
+
+
+// Simpan field-nya pas produk di-update
+add_action('woocommerce_process_product_meta', function ($post_id) {
+  if (isset($_POST['_gotumbler_video_url'])) {
+    update_post_meta($post_id, '_gotumbler_video_url', esc_url_raw($_POST['_gotumbler_video_url']));
+  }
+});

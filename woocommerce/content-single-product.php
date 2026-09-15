@@ -73,6 +73,7 @@ if (post_password_required()) {
         <?php
         $attachment_ids = $product->get_gallery_image_ids();
         $main_image_id  = $product->get_image_id();
+        $video_url      = get_post_meta($product->get_id(), '_gotumbler_video_url', true);
 
         $all_image_ids = $main_image_id
           ? array_merge([$main_image_id], $attachment_ids)
@@ -80,19 +81,25 @@ if (post_password_required()) {
 
         $all_image_ids = array_values(array_unique($all_image_ids));
 
-        if (!empty($all_image_ids)) :
-          $first_image_url = wp_get_attachment_image_url($all_image_ids[0], 'large');
+        if (!empty($all_image_ids) || $video_url) :
+          $first_image_url = !empty($all_image_ids) ? wp_get_attachment_image_url($all_image_ids[0], 'large') : '';
         ?>
 
           <!-- Main Image -->
           <div class="gotumbler-main-image">
+            <?php if ($video_url) : ?>
+              <video id="product-main-video" class="max-h-full max-w-full object-contain" controls playsinline>
+                <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
+              </video>
+            <?php endif; ?>
+
             <img
               id="product-main-view"
               src="<?php echo esc_url($first_image_url); ?>"
               alt="<?php echo esc_attr($product->get_name()); ?>"
-              class="max-h-full max-w-full object-contain select-none">
+              class="max-h-full max-w-full object-contain select-none <?php echo $video_url ? 'hidden' : ''; ?>">
 
-            <?php if (count($all_image_ids) > 1) : ?>
+            <?php if (count($all_image_ids) > 1 || $video_url) : ?>
               <!-- Previous -->
               <button type="button" onclick="gotumblerGallerySwap(-1)" class="gotumbler-gallery-arrow left-3" aria-label="Previous image">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
@@ -110,11 +117,21 @@ if (post_password_required()) {
           </div>
 
           <!-- THUMBNAILS -->
-          <?php if (count($all_image_ids) > 1) : ?>
+          <?php if (count($all_image_ids) > 1 || $video_url) : ?>
             <div class="gotumbler-gallery-thumbnails">
+              <?php if ($video_url) : ?>
+                <button type="button" onclick="gotumblerGalleryJump('video', this)" class="product-gallery-thumb <?php echo $video_url ? 'is-active' : ''; ?>">
+                  <div class="relative w-full h-full flex items-center justify-center bg-zinc-900">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-6 h-6">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </button>
+              <?php endif; ?>
+
               <?php foreach ($all_image_ids as $index => $img_id) :
                 $thumb_url = wp_get_attachment_image_url($img_id, 'large');
-                $is_active = $index === 0;
+                $is_active = $index === 0 && !$video_url;
               ?>
                 <button type="button" onclick="gotumblerGalleryJump('<?php echo esc_js($thumb_url); ?>', this)" class="product-gallery-thumb <?php echo $is_active ? 'is-active' : ''; ?>">
                   <img src="<?php echo esc_url($thumb_url); ?>" alt="" class="max-h-full max-w-full object-contain">
@@ -131,25 +148,46 @@ if (post_password_required()) {
                                       return wp_get_attachment_image_url($id, 'large');
                                     }, $all_image_ids));
                                     ?>;
+              const videoUrl = <?php echo wp_json_encode($video_url ?: null); ?>;
+              const items = videoUrl ? ['video', ...galleryImages] : galleryImages;
 
               let currentIndex = 0;
 
+              const mainImage = document.getElementById('product-main-view');
+              const mainVideo = document.getElementById('product-main-video');
+
+              function showItem(item) {
+                if (item === 'video') {
+                  if (mainVideo) {
+                    mainVideo.classList.remove('hidden');
+                    mainVideo.play().catch(() => {});
+                  }
+                  if (mainImage) mainImage.classList.add('hidden');
+                } else {
+                  if (mainVideo) {
+                    mainVideo.pause();
+                    mainVideo.classList.add('hidden');
+                  }
+                  if (mainImage) {
+                    mainImage.classList.remove('hidden');
+                    mainImage.src = item;
+                  }
+                }
+              }
+
               window.gotumblerGallerySwap = function(direction) {
-                if (!galleryImages.length) return;
+                if (!items.length) return;
 
-                currentIndex = (currentIndex + direction + galleryImages.length) % galleryImages.length;
+                currentIndex = (currentIndex + direction + items.length) % items.length;
 
-                const mainImage = document.getElementById('product-main-view');
-                if (mainImage) mainImage.src = galleryImages[currentIndex];
-
+                showItem(items[currentIndex]);
                 updateActiveThumb(currentIndex);
               };
 
               window.gotumblerGalleryJump = function(url, btn) {
-                const mainImage = document.getElementById('product-main-view');
-                if (mainImage) mainImage.src = url;
+                showItem(url);
 
-                currentIndex = galleryImages.indexOf(url);
+                currentIndex = items.indexOf(url);
 
                 document.querySelectorAll('.product-gallery-thumb').forEach(function(element) {
                   element.classList.remove('is-active');
