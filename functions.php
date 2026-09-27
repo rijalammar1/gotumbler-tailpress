@@ -6,10 +6,18 @@ if (is_file(__DIR__ . '/vendor/autoload_packages.php')) {
 
 function tailpress(): TailPress\Framework\Theme
 {
+  // Override pengecekan dev server agar tidak pernah cURL ke localhost:3000
+  $compiler = new class extends TailPress\Framework\Assets\ViteCompiler {
+    public function isDevServerRunning(): bool
+    {
+      return false;
+    }
+  };
+
   return TailPress\Framework\Theme::instance()
     ->assets(fn($manager) => $manager
       ->withCompiler(
-        new TailPress\Framework\Assets\ViteCompiler,
+        $compiler,
         fn($compiler) => $compiler
           ->registerAsset('resources/css/app.css')
           ->registerAsset('resources/js/app.js')
@@ -136,11 +144,18 @@ add_action('woocommerce_product_options_general_product_data', function () {
   ]);
 });
 
-
-
 // Simpan field-nya pas produk di-update
 add_action('woocommerce_process_product_meta', function ($post_id) {
   if (isset($_POST['_gotumbler_video_url'])) {
     update_post_meta($post_id, '_gotumbler_video_url', esc_url_raw($_POST['_gotumbler_video_url']));
   }
 });
+
+// Endpoint AJAX buat lazy-load widget review Google (Trustindex)
+add_action('wp_ajax_gotumbler_load_reviews', 'gotumbler_load_reviews_callback');
+add_action('wp_ajax_nopriv_gotumbler_load_reviews', 'gotumbler_load_reviews_callback');
+function gotumbler_load_reviews_callback()
+{
+  echo do_shortcode('[trustindex no-registration=google]');
+  wp_die();
+}

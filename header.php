@@ -12,8 +12,21 @@
 <head>
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="<?php echo esc_attr(get_bloginfo('description') ?: 'Go Tumbler - Tumbler custom premium untuk brand dan organisasi Anda. Cetak UV dan laser presisi, kualitas terjamin, cocok untuk corporate gift.'); ?>">
   <link rel="profile" href="https://gmpg.org/xfn/11">
   <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+
+  <!-- Preconnect koneksi Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Preload Gambar Hero LCP -->
+  <?php
+  $upload_dir = wp_upload_dir();
+  $lcp_hero_image = $upload_dir['baseurl'] . '/2026/09/Hero-GT-1-1.webp';
+  ?>
+  <link rel="preload" as="image" href="<?php echo esc_url($lcp_hero_image); ?>" type="image/webp" fetchpriority="high">
+
   <?php wp_head(); ?>
 </head>
 
@@ -32,11 +45,12 @@
           <?php else: ?>
             <a href="<?php echo esc_url(home_url('/')); ?>" class="!no-underline flex items-center gap-2">
               <img
-                src="http://belajar-tailpress.test/wp-content/uploads/2026/08/cropped-Gotumbler_Logo_3_10.webp"
+                src="<?php echo esc_url($upload_dir['baseurl'] . '/2026/08/cropped-Gotumbler_Logo_3_10.webp'); ?>"
                 alt="<?php bloginfo('name'); ?>"
                 width="245"
                 height="53"
-                class="h-[53px] w-auto">
+                class="h-[53px] w-auto aspect-[245/53]"
+                decoding="async">
             </a>
           <?php endif; ?>
         </div>
@@ -58,8 +72,8 @@
         <!-- Menu + Search -->
         <div id="primary-navigation"
           class="hidden md:flex md:flex-row md:items-center md:gap-8
-                          md:static md:bg-transparent md:border-none md:shadow-none md:p-0 md:w-auto
-                          absolute top-full left-0 right-0 bg-white border-b border-zinc-100 shadow-lg flex-col items-start gap-4 p-6 w-full">
+                  md:static md:bg-transparent md:border-none md:shadow-none md:p-0 md:w-auto
+                  absolute top-full left-0 right-0 bg-white border-b border-zinc-100 shadow-lg flex-col items-start gap-4 p-6 w-full">
           <nav class="w-full md:w-auto">
             <?php if (current_user_can('administrator') && !has_nav_menu('primary')): ?>
               <a href="<?php echo esc_url(admin_url('nav-menus.php')); ?>" class="text-sm text-zinc-600"><?php esc_html_e('Edit Menus', 'tailpress'); ?></a>
