@@ -102,6 +102,15 @@
 <?php
 get_template_part('template-parts/homepage/whatsapp-button');
 ?>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('body > div').forEach(function(el) {
+      if (el.textContent.includes('Widget not found')) {
+        el.style.display = 'none';
+      }
+    });
+  });
+</script>
 
 <?php wp_footer(); ?>
 </body>

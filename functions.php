@@ -61,7 +61,7 @@ function tailpress_custom_fonts()
 {
   wp_enqueue_style(
     'plus-jakarta-sans',
-    'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap',
+    'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap',
     [],
     null
   );
@@ -158,4 +158,14 @@ function gotumbler_load_reviews_callback()
 {
   echo do_shortcode('[trustindex no-registration=google]');
   wp_die();
+}
+
+function gotumbler_get_attachment_id_from_url($url)
+{
+  global $wpdb;
+  $attachment_id = $wpdb->get_var($wpdb->prepare(
+    "SELECT ID FROM $wpdb->posts WHERE guid = %s",
+    $url
+  ));
+  return $attachment_id;
 }

@@ -45,10 +45,10 @@ window.addEventListener("load", function () {
       effect: "fade",
       fadeEffect: { crossFade: true },
       slidesPerView: 1,
-      rewind: true, // ganti loop: true
-      speed: 600,
+      rewind: true,
+      speed: 1000, // dari 600 → 1000, transisi fade lebih smooth & kerasa
       autoplay: {
-        delay: 2500,
+        delay: 3000, // dari 2500 → 3000, kasih jeda lebih lama antar transisi
         disableOnInteraction: false,
       },
     });
